@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -22,6 +24,15 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val supabaseAnoKey: String = gradleLocalProperties(rootDir, providers).getProperty("SUPABASE_ANON_KEY") ?: ""
+        val supabaseUrl: String = gradleLocalProperties(rootDir, providers).getProperty("SUPABASE_URL") ?: ""
+        val supabaseRole: String = gradleLocalProperties(rootDir, providers).getProperty("SUPABASE_ROLE") ?: ""
+        val secret: String = gradleLocalProperties(rootDir, providers).getProperty("SECRET") ?: ""
+        buildConfigField("String", "API_KEY", "\"$supabaseAnoKey\"")
+        buildConfigField("String", "SUPABASE_URL", "\"$supabaseUrl\"")
+        buildConfigField("String", "SUPABASE_ROLE", "\"$supabaseRole\"")
+        buildConfigField("String", "SECRET", "\"$secret\"")
     }
 
     buildTypes {
@@ -42,6 +53,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     packaging {
         resources {
@@ -72,17 +84,19 @@ dependencies {
     implementation(libs.hilt.work)
 
     // Superbase
-    implementation(libs.postgrest.kt)
-    implementation(libs.storage.kt)
-    implementation(libs.gotrue.kt)
+    implementation(libs.bundles.supabase)
 
     // Ktor
-    implementation(libs.ktor.client.android)
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.utils)
+    implementation(libs.bundles.ktor)
 
     // Coil
     implementation(libs.coil.kt.coil.compose)
+
+    // Compose Destination
+    implementation(libs.bundles.compose.destinations)
+
+    // Paging Compose
+    implementation(libs.bundles.paging.compose)
 
     // Unit Test
     testImplementation(libs.junit)
