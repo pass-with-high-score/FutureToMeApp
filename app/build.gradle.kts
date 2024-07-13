@@ -98,6 +98,9 @@ dependencies {
     // Paging Compose
     implementation(libs.bundles.paging.compose)
 
+    // RichEditor
+    implementation(libs.rich.editor)
+
     // Unit Test
     testImplementation(libs.junit)
 
