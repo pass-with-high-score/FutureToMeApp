@@ -42,6 +42,9 @@ pagingCompose = "3.3.0"
 # RichEditor
 richEditor = "1.0.0-rc05-k2"
 
+# Worker
+workRuntime = "2.9.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -92,6 +95,9 @@ androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.r
 
 # RichEditor
 rich-editor = { module = "com.mohamedrejeb.richeditor:richeditor-compose", version.ref = "richEditor" }
+
+# Worker
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
 
 [bundles]
 compose = ["androidx-core-ktx", "androidx-lifecycle-runtime-ktx", "androidx-activity-compose", "androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling-preview", "androidx-material3"]

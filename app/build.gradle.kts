@@ -95,6 +95,9 @@ dependencies {
     // RichEditor
     implementation(libs.rich.editor)
 
+    // WorkManager
+    implementation(libs.androidx.work.runtime)
+
     // Unit Test
     testImplementation(libs.bundles.testing)
 
